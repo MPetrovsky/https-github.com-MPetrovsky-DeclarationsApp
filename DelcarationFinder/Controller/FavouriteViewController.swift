@@ -9,63 +9,40 @@
 import UIKit
 import CoreData
 
-class FavouriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FavouritePersonCellDelegate {
+class FavouriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, FavouritePersonCellDelegate, CoreDataManagerDelegateForFavourite {
     
     @IBOutlet weak var tableView: UITableView!
     
     var linkToPdf: URL?
-    var infoArray = [PersonsInfoStored]()
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var favouriteInfoArray = [PersonsInfoStored]()
+    weak var context = CoreDataManager.sharedDataManager.persistentContainer.viewContext
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return infoArray.count
+        return favouriteInfoArray.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let favouriteCell = tableView.dequeueReusableCell(withIdentifier: "FavouriteCell") as! FavouritePersonCell
-        favouriteCell.nameLbl.text = infoArray[indexPath.row].firstname
-        favouriteCell.lastNameLabel.text = infoArray[indexPath.row].lastname
-        favouriteCell.placeOfWorkLabel.text = infoArray[indexPath.row].placeOfWork
-        favouriteCell.positionLabel.text = infoArray[indexPath.row].position
-        favouriteCell.noteTextField.text = infoArray[indexPath.row].note
-        favouriteCell.cellDelegate = self
+        favouriteCell.nameLbl.text = favouriteInfoArray[indexPath.row].firstname
+        favouriteCell.lastNameLabel.text = favouriteInfoArray[indexPath.row].lastname
+        favouriteCell.placeOfWorkLabel.text = favouriteInfoArray[indexPath.row].placeOfWork
+        favouriteCell.positionLabel.text = favouriteInfoArray[indexPath.row].position
+        favouriteCell.noteTextField.text = favouriteInfoArray[indexPath.row].note
+        favouriteCell.favouriteCellDelegate = self
         favouriteCell.index = indexPath
         return favouriteCell
     }
-
-    func loadItems() {
-        let request :NSFetchRequest<PersonsInfoStored> = PersonsInfoStored.fetchRequest()
-        do {
-            infoArray = try context.fetch(request)
-        } catch {
-            print ("Error fetching data \(error)")
-            
-        }
-
-    }
-    
-    func saveInfo() {
-        do {
-            try context.save()
-            print ("saved")
-        }
-        catch {
-            print ("error saving \(error)")
-        }
-    }
     
     func didTapDeleteButton(index: Int) {
-        
-        context.delete(infoArray[index])
-        infoArray.remove(at: index)
-        saveInfo()
+        CoreDataManager.sharedDataManager.deleteFromCoreData(targetArray: favouriteInfoArray, targetIndex: index)
+        favouriteInfoArray.remove(at: index)
         tableView.reloadData()
     }
     
     func didTapGoToWebButton(index: Int) {
-        print (infoArray[index].note!)
-        linkToPdf = URL(string: infoArray[index].linkPDF!)!
+        print (favouriteInfoArray[index].note!)
+        linkToPdf = URL(string: favouriteInfoArray[index].linkPDF!)!
         UIApplication.shared.open(linkToPdf!, options: [ : ], completionHandler: nil)
     }
     
@@ -75,28 +52,33 @@ class FavouriteViewController: UIViewController, UITableViewDelegate, UITableVie
         let alert = UIAlertController(title: "Зммінити коментар", message: "", preferredStyle: .alert)
         let action = UIAlertAction(title: "Змінити", style: .default) { (action) in
             
-            self.infoArray[index].note = textField.text
-            self.saveInfo()
+            self.favouriteInfoArray[index].note = textField.text
+            CoreDataManager.sharedDataManager.saveContext()
             self.tableView.reloadData()
         }
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Новий коментар"
-            alertTextField.text = self.infoArray[index].note
+            alertTextField.text = self.favouriteInfoArray[index].note
             textField = alertTextField
         }
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
         
     }
+    
+    func sendFavouriteData(data: [PersonsInfoStored]) {
+        favouriteInfoArray = data
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        loadItems()
+        CoreDataManager.sharedDataManager.loadCoreData()
         tableView.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadItems()
+        CoreDataManager.sharedDataManager.coreDataManagerDelegateForFVC = self
+        CoreDataManager.sharedDataManager.loadCoreData()
         
     }
 }

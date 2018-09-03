@@ -13,7 +13,6 @@ class Person: Codable {
     init (items: [Persons]) {
         self.items = items
     }
-    
 }
 
     class Persons: Codable {

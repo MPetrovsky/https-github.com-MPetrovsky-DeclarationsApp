@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol PersonCellDelegate {
+protocol PersonCellDelegate: class {
     func didTapGoToWeb(index: Int)
     func didTapMarkAsFavourite(index: Int)
 }
 
 class PersonCell: UITableViewCell {
 
-    var cellDelegate: PersonCellDelegate?
+    weak var cellDelegate: PersonCellDelegate?
     var index: IndexPath?
     
     @IBOutlet weak var nameLbl: UILabel!

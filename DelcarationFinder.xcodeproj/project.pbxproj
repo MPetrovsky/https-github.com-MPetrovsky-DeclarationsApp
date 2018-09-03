@@ -15,6 +15,10 @@
 		AA300484212B368B006A87BE /* PersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA300483212B368B006A87BE /* PersonCell.swift */; };
 		AA300488212B404F006A87BE /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA300487212B404F006A87BE /* Person.swift */; };
 		AA30048A212B444E006A87BE /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA300489212B444E006A87BE /* SecondViewController.swift */; };
+		AA4215D8213BE13100B60AC3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4215D7213BE13100B60AC3 /* CoreDataManager.swift */; };
+		AA4215DA213BE15C00B60AC3 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4215D9213BE15C00B60AC3 /* NetworkManager.swift */; };
+		AA4215DC213BF10000B60AC3 /* ActivityIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4215DB213BF10000B60AC3 /* ActivityIndicatorManager.swift */; };
+		AA4215DE213BF5B800B60AC3 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4215DD213BF5B800B60AC3 /* AlertManager.swift */; };
 		AA65DD0A21332BBF00F98E28 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA65DD0921332BBF00F98E28 /* FavouriteViewController.swift */; };
 		AA65DD0C21332C5B00F98E28 /* FavouritePersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA65DD0B21332C5B00F98E28 /* FavouritePersonCell.swift */; };
 		AA65DD322135DA8700F98E28 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA65DD302135DA8700F98E28 /* DataModel.xcdatamodeld */; };
@@ -31,6 +35,10 @@
 		AA300483212B368B006A87BE /* PersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCell.swift; sourceTree = "<group>"; };
 		AA300487212B404F006A87BE /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		AA300489212B444E006A87BE /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		AA4215D7213BE13100B60AC3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		AA4215D9213BE15C00B60AC3 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		AA4215DB213BF10000B60AC3 /* ActivityIndicatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorManager.swift; sourceTree = "<group>"; };
+		AA4215DD213BF5B800B60AC3 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		AA65DD0921332BBF00F98E28 /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		AA65DD0B21332C5B00F98E28 /* FavouritePersonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritePersonCell.swift; sourceTree = "<group>"; };
 		AA65DD312135DA8700F98E28 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
@@ -66,13 +74,9 @@
 		AA300470212B3088006A87BE /* DelcarationFinder */ = {
 			isa = PBXGroup;
 			children = (
-				AA300471212B3088006A87BE /* AppDelegate.swift */,
-				AA300473212B3088006A87BE /* ViewController.swift */,
-				AA300489212B444E006A87BE /* SecondViewController.swift */,
-				AA65DD0921332BBF00F98E28 /* FavouriteViewController.swift */,
-				AA300487212B404F006A87BE /* Person.swift */,
-				AA300483212B368B006A87BE /* PersonCell.swift */,
-				AA65DD0B21332C5B00F98E28 /* FavouritePersonCell.swift */,
+				AA4215D6213A89E500B60AC3 /* Controller */,
+				AA4215D5213A89DE00B60AC3 /* View */,
+				AA4215D4213A89D300B60AC3 /* Model */,
 				AA300475212B3088006A87BE /* Main.storyboard */,
 				AA300478212B308B006A87BE /* Assets.xcassets */,
 				AA30047A212B308B006A87BE /* LaunchScreen.storyboard */,
@@ -80,6 +84,38 @@
 				AA65DD302135DA8700F98E28 /* DataModel.xcdatamodeld */,
 			);
 			path = DelcarationFinder;
+			sourceTree = "<group>";
+		};
+		AA4215D4213A89D300B60AC3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AA300487212B404F006A87BE /* Person.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AA4215D5213A89DE00B60AC3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AA300483212B368B006A87BE /* PersonCell.swift */,
+				AA65DD0B21332C5B00F98E28 /* FavouritePersonCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AA4215D6213A89E500B60AC3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AA300473212B3088006A87BE /* ViewController.swift */,
+				AA300489212B444E006A87BE /* SecondViewController.swift */,
+				AA65DD0921332BBF00F98E28 /* FavouriteViewController.swift */,
+				AA4215DD213BF5B800B60AC3 /* AlertManager.swift */,
+				AA4215DB213BF10000B60AC3 /* ActivityIndicatorManager.swift */,
+				AA4215D9213BE15C00B60AC3 /* NetworkManager.swift */,
+				AA4215D7213BE13100B60AC3 /* CoreDataManager.swift */,
+				AA300471212B3088006A87BE /* AppDelegate.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,10 +191,14 @@
 			files = (
 				AA300484212B368B006A87BE /* PersonCell.swift in Sources */,
 				AA65DD322135DA8700F98E28 /* DataModel.xcdatamodeld in Sources */,
+				AA4215DA213BE15C00B60AC3 /* NetworkManager.swift in Sources */,
 				AA300474212B3088006A87BE /* ViewController.swift in Sources */,
 				AA300488212B404F006A87BE /* Person.swift in Sources */,
+				AA4215DC213BF10000B60AC3 /* ActivityIndicatorManager.swift in Sources */,
 				AA30048A212B444E006A87BE /* SecondViewController.swift in Sources */,
 				AA65DD0A21332BBF00F98E28 /* FavouriteViewController.swift in Sources */,
+				AA4215DE213BF5B800B60AC3 /* AlertManager.swift in Sources */,
+				AA4215D8213BE13100B60AC3 /* CoreDataManager.swift in Sources */,
 				AA300472212B3088006A87BE /* AppDelegate.swift in Sources */,
 				AA65DD0C21332C5B00F98E28 /* FavouritePersonCell.swift in Sources */,
 			);

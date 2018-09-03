@@ -8,17 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+
+class ViewController: UIViewController {
+    
     @IBOutlet weak var dataTextField: UITextField!
    
     @IBAction func searchButton(_ sender: Any) {
         if dataTextField.text == "" {
-            let emptyTextFieldAlert = UIAlertController(title: "Введіть Ваш запит", message: "", preferredStyle: UIAlertControllerStyle.alert)
-            emptyTextFieldAlert.addAction(UIAlertAction(title: "Добре", style: UIAlertActionStyle.default, handler: nil))
-            self.present(emptyTextFieldAlert, animated: true, completion: nil)
+            AlertManager.sharedAlertManager.alertOk(message: "", title: "Введіть Ваш запит", controller: self)
         }
         performSegue(withIdentifier: "goToSecond", sender: self)
+        ActivityIndicatorManager.sharedActivityIndicatorManager.startActivityIndicator()
+
     }
     
     override func  prepare(for segue: UIStoryboardSegue, sender: Any?) {

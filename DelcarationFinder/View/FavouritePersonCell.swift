@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FavouritePersonCellDelegate {
+protocol FavouritePersonCellDelegate: class {
     func didTapDeleteButton(index: Int)
     func didTapGoToWebButton(index: Int)
     func didTapSaveNoteButton(index: Int)
@@ -16,7 +16,7 @@ protocol FavouritePersonCellDelegate {
 
 class FavouritePersonCell: UITableViewCell {
 
-    var cellDelegate: FavouritePersonCellDelegate?
+    weak var favouriteCellDelegate: FavouritePersonCellDelegate?
     var index: IndexPath?
     
     
@@ -26,12 +26,12 @@ class FavouritePersonCell: UITableViewCell {
     @IBOutlet weak var placeOfWorkLabel: UILabel!
     @IBOutlet weak var noteTextField: UITextField!
     @IBAction func deleteButton(_ sender: Any) {
-        cellDelegate?.didTapDeleteButton(index: (index?.row)!)
+        favouriteCellDelegate?.didTapDeleteButton(index: (index?.row)!)
     }
     @IBAction func goToWebButton(_ sender: Any) {
-        cellDelegate?.didTapGoToWebButton(index: (index?.row)!)
+        favouriteCellDelegate?.didTapGoToWebButton(index: (index?.row)!)
     }
     @IBAction func saveNoteButton(_ sender: Any) {
-        cellDelegate?.didTapSaveNoteButton(index: (index?.row)!)
+        favouriteCellDelegate?.didTapSaveNoteButton(index: (index?.row)!)
     }
 }
